@@ -1,0 +1,250 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(138, 43, 226, 0.1) 0%, transparent 70%);
+    animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.container {
+    position: relative;
+    z-index: 1;
+}
+
+.clock-wrapper {
+    position: relative;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border-radius: 30px;
+    padding: 60px 80px;
+    box-shadow: 
+        0 8px 32px 0 rgba(31, 38, 135, 0.37),
+        inset 0 0 60px rgba(138, 43, 226, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+.glow-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(138, 43, 226, 0.3) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(40px);
+    animation: pulse 4s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.5;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+}
+
+.clock-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.time-segment {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.time-value {
+    font-family: 'Orbitron', monospace;
+    font-size: 96px;
+    font-weight: 900;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 30px rgba(138, 43, 226, 0.5);
+    min-width: 160px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.time-value:hover {
+    transform: scale(1.05);
+    filter: brightness(1.2);
+}
+
+.time-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.separator {
+    font-family: 'Orbitron', monospace;
+    font-size: 80px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: blink 1s ease-in-out infinite;
+    margin: 0 10px;
+}
+
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.3;
+    }
+}
+
+.date-display {
+    margin-top: 40px;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 2px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .clock-wrapper {
+        padding: 50px 60px;
+    }
+    
+    .time-value {
+        font-size: 72px;
+        min-width: 120px;
+    }
+    
+    .separator {
+        font-size: 60px;
+    }
+    
+    .glow-circle {
+        width: 300px;
+        height: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .clock-wrapper {
+        padding: 40px 30px;
+    }
+    
+    .clock-display {
+        gap: 10px;
+    }
+    
+    .time-value {
+        font-size: 56px;
+        min-width: 100px;
+    }
+    
+    .separator {
+        font-size: 48px;
+        margin: 0 5px;
+    }
+    
+    .time-label {
+        font-size: 12px;
+        letter-spacing: 2px;
+    }
+    
+    .date-display {
+        font-size: 16px;
+        margin-top: 30px;
+    }
+    
+    .glow-circle {
+        width: 250px;
+        height: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .clock-wrapper {
+        padding: 30px 20px;
+        border-radius: 20px;
+    }
+    
+    .clock-display {
+        gap: 5px;
+    }
+    
+    .time-value {
+        font-size: 40px;
+        min-width: 80px;
+    }
+    
+    .separator {
+        font-size: 36px;
+        margin: 0 2px;
+    }
+    
+    .time-label {
+        font-size: 10px;
+        letter-spacing: 1px;
+    }
+    
+    .date-display {
+        font-size: 14px;
+        margin-top: 20px;
+    }
+}
